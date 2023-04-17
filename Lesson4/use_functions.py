@@ -60,7 +60,7 @@ def buy(sum, good):
     return True
 
 def print_history():
-    print(history, sep='\n')
+    print(*history, sep='\n')
 
 
 def run_bank():
