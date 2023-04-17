@@ -4,3 +4,5 @@ nu1-dz1-terminal/
 **/.DS_Store
 Lesson4/Test.png
 Lesson4/test.py
+*.pyc
+

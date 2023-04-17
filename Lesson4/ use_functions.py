@@ -63,29 +63,32 @@ def print_history():
     print(history, sep='\n')
 
 
+def run_bank():
+    while True:
+        print('1. пополнение счета')
+        print('2. покупка')
+        print('3. история покупок')
+        print('4. выход')
 
-while True:
-    print('1. пополнение счета')
-    print('2. покупка')
-    print('3. история покупок')
-    print('4. выход')
-
-   
-    choice = input('Выберите пункт меню: ')
-    if choice == '1':
-        sum = float(input(' Введите сумму пополнения: '))
-        if (sum >0.0):
-            add_sum(sum)
-    elif choice == '2':
-        sum = float(input(' Введите цену покупки: '))
-        if (check_sum(sum)):
-            good= input(' Введите  наименование товара/услуги: ')
-            buy(sum, good)
        
-    elif choice == '3':
-        print_history()
+        choice = input('Выберите пункт меню: ')
+        if choice == '1':
+            sum = float(input(' Введите сумму пополнения: '))
+            if (sum >0.0):
+                add_sum(sum)
+        elif choice == '2':
+            sum = float(input(' Введите цену покупки: '))
+            if (check_sum(sum)):
+                good= input(' Введите  наименование товара/услуги: ')
+                buy(sum, good)
+           
+        elif choice == '3':
+            print_history()
 
-    elif choice == '4':
-        break
-    else:
-        print('Неверный пункт меню')
+        elif choice == '4':
+            break
+        else:
+            print('Неверный пункт меню')
+
+if __name__ == "__main__":
+    run_bank()

@@ -33,42 +33,45 @@ def get_stringed_BD(bd):
     
     return ( f'{ days[bd_parts[0]]} {monthes[bd_parts[1]]} { bd_parts[2] } года')
     
+def run_victory():
+    #https://worldtable.info/literatura/tablica-gody-zhizni-russkih-pisatelei-i-poyet.html
+    poet_years = (
+        ("Пушкин A.C.",      '26.05.1799'),
+        ("Цветаева М.И.",    '08.10.1892'),
+        ("Маяковский В.В.",  '07.07.1893'),
+        ("Высоцкий В.С.",    '25.01.1938'),
+        ("Шевчук Ю.Ю.",      '16.05.1957'),
+        ("Блок А.А.",        '16.11.1980'),
+        ("Белый А.Н.",       '14.10.1880'),
+        ("Есенин С.А.",      '21.09.1895'),
+        ("Лермонотов М.Ю.",  '03.10.1814'),
+        ("Мандельштам О.Э.", '03.01.1891'),
+        ("Вознесенский А.А.",'12.05.1933')
+        )
+     
+    poet_rand = random.sample(poet_years,5)
+    cnt = len(poet_rand);
+    while(True):
+        print ("Вам нужно будет ввести дату рождения поэта в формате 'дд.мм.гггг'. (Всего поэтов:", cnt, ")")
+        right_answer =0
+        for poet in poet_rand:
+            #print(poet, type(poet))
+            #hole = type(poet)
+            answer  = input(poet[0]+": ")
+            if(answer == poet[1]):
+                right_answer+=1
+            else:
+                check =  get_stringed_BD(answer)
+                if len(check) == 0:
+                    continue;
+                print("верный ответ:", get_stringed_BD(poet[1]))
+       
+        right_perc = right_answer/cnt*100.0
+       
+        print( "Правильных ответов:\t", right_answer, "  (", right_perc, "% )")
+        print( "Неверных ответов:\t",   cnt - right_answer,"  (",  100.0 - right_perc, "% )")
+        
+        if(input("Хотите попробовать снова ? (д/н): ").lower() != "д"): break
 
-#https://worldtable.info/literatura/tablica-gody-zhizni-russkih-pisatelei-i-poyet.html
-poet_years = ( 
-    ("Пушкин A.C.",      '26.05.1799'),
-    ("Цветаева М.И.",    '08.10.1892'),
-    ("Маяковский В.В.",  '07.07.1893'),
-    ("Высоцкий В.С.",    '25.01.1938'),
-    ("Шевчук Ю.Ю.",      '16.05.1957'),
-    ("Блок А.А.",        '16.11.1980'),
-    ("Белый А.Н.",       '14.10.1880'),
-    ("Есенин С.А.",      '21.09.1895'),
-    ("Лермонотов М.Ю.",  '03.10.1814'),
-    ('Мандельштам О.Э.', '03.01.1891'),
-    ("Вознесенский А.А.",'12.05.1933') 
-    )
- 
-poet_rand = random.sample(poet_years,5)
-cnt = len(poet_rand);
-while(True):
-    print ("Вам нужно будет ввести дату рождения поэта в формате 'дд.мм.гггг'. (Всего поэтов:", cnt, ")")
-    right_answer =0
-    for poet in poet_rand:
-        #print(poet, type(poet))
-        #hole = type(poet)
-        answer  = input(poet[0]+": ")
-        if(answer == poet[1]):
-            right_answer+=1
-        else:
-            check =  get_stringed_BD(answer)
-            if len(check) == 0:
-                continue;
-            print("верный ответ:", get_stringed_BD(poet[1]))
-   
-    right_perc = right_answer/cnt*100.0
-   
-    print( "Правильных ответов:\t", right_answer, "  (", right_perc, "% )")
-    print( "Неверных ответов:\t",   cnt - right_answer,"  (",  100.0 - right_perc, "% )")
-    
-    if(input("Хотите попробовать снова ? (д/н): ").lower() != "д"): break
+if __name__ == "__main__":
+    run_victory()
