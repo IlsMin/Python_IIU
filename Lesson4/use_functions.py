@@ -33,8 +33,10 @@
 
 Для реализации основного меню можно использовать пример ниже или написать свой
 """
+import json
+import os
 
-
+HIST_FILE_NAME = 'history.json'
 history =[]
 account_sum = 0.0
 
@@ -61,14 +63,35 @@ def buy(sum, good):
 
 def print_history():
     print(*history, sep='\n')
+    
 
+def write_to_file():
+    jsonval = {'hist': history, 'sum': account_sum}
+    with open(HIST_FILE_NAME, "w") as f:
+        json.dump(jsonval, f)
+
+def read_from_file():
+    if os.path.isfile(HIST_FILE_NAME) and os.path.getsize(HIST_FILE_NAME) > 0:
+        with open(HIST_FILE_NAME, "r") as f:
+            jsonval = json.load(f)
+        global history
+        history = jsonval['hist']
+        global account_sum
+        account_sum = jsonval['sum']
+    
+    else: print(f"No {HIST_FILE_NAME} file or it's empty")
 
 def run_bank():
+    if(os.path.exists(HIST_FILE_NAME)):
+        read_from_file()
+        # print_history()
+
     while True:
         print('1. пополнение счета')
         print('2. покупка')
         print('3. история покупок')
-        print('4. выход')
+        print('4. запись в файлы')
+        print('5. выход')
 
        
         choice = input('Выберите пункт меню: ')
@@ -86,6 +109,10 @@ def run_bank():
             print_history()
 
         elif choice == '4':
+            write_to_file()
+
+        elif choice == '5':
+            write_to_file()
             break
         else:
             print('Неверный пункт меню')

@@ -6,3 +6,4 @@ Lesson4/Test.png
 Lesson4/test.py
 *.pyc
 
+.DS_Store
