@@ -7,3 +7,4 @@ Lesson4/test.py
 *.pyc
 
 .DS_Store
+Loto/.vscode/launch.json
