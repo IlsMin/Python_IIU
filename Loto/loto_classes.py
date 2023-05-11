@@ -65,8 +65,7 @@ class PlayCard:
         return exist    
     
     def  is_empty(self):
-        # rez =  np.any(self.tiles, where=  self.tiles > 0 )
-        # return len(rez ) == 0  
+         # print (np.any(self.tiles, where= self.tiles > 0 ))
         return    not np.any(self.tiles, where= self.tiles > 0 )
 
     def draw_card(self):
