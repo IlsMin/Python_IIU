@@ -8,3 +8,5 @@ Lesson4/test.py
 
 .DS_Store
 Loto/.vscode/launch.json
+Loto/.vscode/settings.json
+Loto/.coverage
