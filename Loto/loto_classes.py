@@ -69,8 +69,6 @@ class PlayCard:
         return    not np.any(self.tiles, where= self.tiles > 0 )
 
     def draw_card(self):
-  # TODO    player name in the middle
-        # name_l = len ( self.owner)
         width = 4*PlayCard.COL_CNT
         len = (width - self.name_l)//2
         
