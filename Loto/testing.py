@@ -20,6 +20,10 @@ class TestStepGenerator(unittest.TestCase):
         self.assertEqual (self.gener.cells[0], 0)
         print('cells1', self.gener.cells)
 
+    def test_gener_eq (self):
+        somegener = lc.StepGenerator()
+        assert(somegener == self.gener)
+
 
     def test_lc_over(self):
         # gener = lc.StepGenerator() # 1 item =0 already exists!
