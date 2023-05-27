@@ -9,12 +9,15 @@ for i in range(PLAYERS_CNT):
     Cards.append(lc.PlayCard(name, i>0))
 # lCards.append(lc.PlayCard(, True))
 step_gen = lc.StepGenerator()
-print(len(Cards))
+print (step_gen)
+print(len(Cards), Cards[0]==Cards[1])
+
 while(len(Cards)==PLAYERS_CNT):
     val = step_gen.get_next_step()
     print(f'\nНовый бочонок: {val}')
     for card in Cards:
-        card.draw_card();
+        print('\n', card)
+        card.draw_card()
 
     answer_is_right  =  True
     des = input('Зачеркнуть цифру? (д/н): ').lower()

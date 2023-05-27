@@ -6,24 +6,39 @@ class StepGenerator:
     CELLS_COUNT = 90
     #cells = []
     def resetCells(self):
-        self.cells = []
-        self.cells.append(0)
+        self._cells = []
+        self._cells.append(0)
         
     def __init__(self) -> None:
         self.resetCells()
+
+    @property
+    def cells(self):
+        return self._cells
+    
+    @cells.setter
+    def cells(self, new_val):
+        self._cells = new_val;   
     
     def  get_next_step(self)->int:
         cell = 0
-        count = len(self.cells)
-        while(cell in self.cells):
+        count = len(self._cells)
+        while(cell in self._cells):
             cell = random.randint(1, StepGenerator.CELLS_COUNT)
         count += 1
         if(count >= StepGenerator.CELLS_COUNT):
              print("мешок пуст!\nновый раунд!!")
              self.resetCells()
-        self.cells.append(cell)
+        self._cells.append(cell)
         return cell
-       
+    
+    def __str__(self) -> str:
+        return f'StepGenerator, cells_count:{StepGenerator.CELLS_COUNT}'
+    
+    def __eq__(self, __value: object) -> bool:
+        print(self.cells)
+        print(__value.cells)
+        return self._cells == __value.cells
         
 # карточка
 class PlayCard:
@@ -75,7 +90,7 @@ class PlayCard:
         print ('-'* (len),end ="")
         print (self.owner,end ="")
         if self.name_l% 2 != 0: len+=1 
-        print ('-'* (len))
+        print ('-' * (len))
         for r in range(PlayCard.ROW_CNT):
             for c in range(PlayCard.COL_CNT):
                   if(self.tiles[r,c]== 0):
@@ -86,6 +101,16 @@ class PlayCard:
                     print ('{:3d}'.format(self.tiles[r,c]), end=' ')
             print('')
         print ('-'* width)
-                
+
+    def __str__(self) -> str:
+        return f'PlayCard({PlayCard.ROW_CNT}x{PlayCard.COL_CNT}): [owner:{self.owner}, autoplay:{self.auto_play}]'
+
+    def __eq__(self, __value: object) -> bool:
+         print(type(self), type(__value))
+         print (self, __value)
+         return self.auto_play == __value.auto_play  \
+           and  self.owner     == __value.owner      \
+           and  self.tiles     == __value.tiles
+             
     # if _name__ == '__main__':
     #      run
